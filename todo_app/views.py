@@ -13,7 +13,7 @@ class TaskListView(generic.ListView):
 class TaskCreateView(generic.CreateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy("todo_app:task_list")
+    success_url = reverse_lazy("todo_app:task-list")
 
 
 class TaskUpdateView(generic.UpdateView):
@@ -52,9 +52,9 @@ class TagDeleteView(generic.DeleteView):
 
 def toggle_do_undo(request, pk):
     task = Task.objects.get(id=pk)
-    if task.is_completed:
-        task.is_completed = False
+    if task.done:
+        task.done = False
     else:
-        task.is_completed = True
+        task.done = True
     task.save()
     return HttpResponseRedirect(reverse_lazy("todo_app:task-list"))
