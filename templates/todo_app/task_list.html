@@ -12,12 +12,12 @@
     {% for task in task_list %}
       <br>
       <h4>{{ task.content }}
-        {% if task.is_completed %}
+        {% if task.done %}
           <span style="color: green">Done</span>
         {% else %}
           <span style="color: red">Not done</span>
         {% endif %}
-        {% if task.is_completed %}
+        {% if task.done %}
           <a style="float: right" href="{% url 'todo_app:toggle-task' pk=task.id %}" class="btn btn-secondary link-to-page">
             Undo
           </a>
@@ -27,9 +27,10 @@
           </a>
         {% endif %}
       </h4>
-      <h6>Created: {{ task.created_time|date:"F j, Y, h:i a" }}
+      <h6>Created: {{ task.datetime|date:"F j, Y, h:i a" }}
         <span style="color: brown">
           {% if task.deadline %}
+            <br>
             Deadline: {{ task.deadline|date:"F j, Y, h:i a" }}
           {% endif %}
         </span>
@@ -42,6 +43,6 @@
       <hr>
     {% endfor %}
   {% else %}
-    <p>There are no tasks in list</p>
+    <p>Hmm, no tasks in list yet</p>
   {% endif %}
 {% endblock %}
