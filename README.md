@@ -29,8 +29,8 @@ python manage.py runserver
 ```
 
 ## Screenshots:
-![Home Page](https://i.ibb.co/1qYKcqs/chrome-04-05-24-377.png)
-![Tag List](https://i.ibb.co/3mfkT9J/chrome-04-05-24-378.png)
+![Home Page](https://i.postimg.cc/XYdFPYwn/chrome-04-05-24-385.png)
+![Tag List](https://i.postimg.cc/DzcG2pjD/chrome-04-05-24-386.png)
 
 ## Database structure:
 ![DB_structure](https://i.ibb.co/kM76zyG/todo-app-models.png)
