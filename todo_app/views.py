@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
+from django.views import View
 
 from todo_app.forms import TaskForm
 from todo_app.models import Task, Tag
@@ -50,11 +51,12 @@ class TagDeleteView(generic.DeleteView):
     success_url = reverse_lazy("todo_app:tag-list")
 
 
-def toggle_do_undo(request, pk):
-    task = Task.objects.get(id=pk)
-    if task.done:
-        task.done = False
-    else:
-        task.done = True
-    task.save()
-    return HttpResponseRedirect(reverse_lazy("todo_app:task-list"))
+class ToggleDoUndoView(View):
+    def get(self, request, pk):
+        return HttpResponseRedirect(reverse_lazy("todo_app:task-list"))
+
+    def post(self, request, pk):
+        task = Task.objects.get(id=pk)
+        task.done = not task.done
+        task.save()
+        return HttpResponseRedirect(reverse_lazy("todo_app:task-list"))
