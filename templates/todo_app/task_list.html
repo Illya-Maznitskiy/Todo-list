@@ -17,15 +17,15 @@
         {% else %}
           <span style="color: red">Not done</span>
         {% endif %}
-        {% if task.done %}
-          <a style="float: right" href="{% url 'todo_app:toggle-task' pk=task.id %}" class="btn btn-secondary link-to-page">
-            Undo
-          </a>
-        {% else %}
-          <a style="float: right" href="{% url 'todo_app:toggle-task' pk=task.id %}" class="btn btn-success link-to-page">
-            Complete
-          </a>
-        {% endif %}
+        <!-- Modify the buttons to use forms and float them to the right -->
+        <form method="POST" action="{% url 'todo_app:toggle-task' pk=task.id %}" style="float: right;">
+          {% csrf_token %}
+          {% if task.done %}
+            <button type="submit" class="btn btn-secondary link-to-page">Undo</button>
+          {% else %}
+            <button type="submit" class="btn btn-success link-to-page">Complete</button>
+          {% endif %}
+        </form>
       </h4>
       <h6>Created: {{ task.datetime|date:"F j, Y, h:i a" }}
         <span style="color: brown">
